@@ -1,21 +1,21 @@
 package com.buildingoutloud.wedding.controller;
 
 import java.time.LocalDate;
-import java.util.Objects;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.Base64Utils;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.buildingoutloud.wedding.entity.User;
+import com.buildingoutloud.wedding.pojo.UserResponse;
 import com.buildingoutloud.wedding.service.UserService;
 import com.buildingoutloud.wedding.util.CustomFilePropertyEditor;
 import com.buildingoutloud.wedding.util.CustomLocalDateEditor;
@@ -23,15 +23,18 @@ import com.buildingoutloud.wedding.util.CustomLocalDateEditor;
 @RestController
 public class UserController {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
+	
 	@Autowired
 	private UserService userService;
 
 	@PostMapping(path = "/registration", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE})
 	public ResponseEntity<Object> registration(@ModelAttribute("user") User user){
+
+		LOGGER.info("Enter");
+		UserResponse createdUser = userService.generateUserResponse(userService.registration(user));					
 		
-		User createdUser = userService.registration(user);
-		
-		return new ResponseEntity<Object>(userService.generateUserResponse(createdUser), HttpStatus.OK);
+		return new ResponseEntity<Object>(createdUser, HttpStatus.OK);
 	}
 	
 	
