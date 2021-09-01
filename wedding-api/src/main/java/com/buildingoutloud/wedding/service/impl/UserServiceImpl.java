@@ -49,8 +49,6 @@ public class UserServiceImpl extends BaseServiceImpl<User, Integer> implements U
 			BeanUtils.copyProperties(user, userResponse);
 		}
 		userResponse.setId(String.valueOf(user.getId()));
-		userResponse.setDocumentAadhar(Base64Utils.encodeToString(user.getDocumentAadhar()));
-		userResponse.setDocumentMariagePicture( Base64Utils.encodeToString(user.getDocumentMariagePicture()));
 		LOGGER.info("Exit");
 		return userResponse;
 	}

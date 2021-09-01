@@ -10,9 +10,6 @@ public class UserResponse {
 
 	private String id;
 	
-	private boolean isError;
-	
-	private String errorMessage;
 	
 	private String firstName;
 	
@@ -252,33 +249,6 @@ public class UserResponse {
 		this.active = active;
 	}
 
-	/**
-	 * @return the isError
-	 */
-	public boolean isError() {
-		return isError;
-	}
-
-	/**
-	 * @param isError the isError to set
-	 */
-	public void setError(boolean isError) {
-		this.isError = isError;
-	}
-
-	/**
-	 * @return the errorMessage
-	 */
-	public String getErrorMessage() {
-		return errorMessage;
-	}
-
-	/**
-	 * @param errorMessage the errorMessage to set
-	 */
-	public void setErrorMessage(String errorMessage) {
-		this.errorMessage = errorMessage;
-	}
 
 	
 }
