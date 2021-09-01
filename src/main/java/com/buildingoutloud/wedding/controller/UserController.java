@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,7 +29,8 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
-	@PostMapping(path = "/registration", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE})
+	@CrossOrigin(origins = "*")
+	@PostMapping(path = "/registration", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = {MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<Object> registration(@ModelAttribute("user") User user){
 
 		LOGGER.info("Enter");
@@ -40,7 +42,7 @@ public class UserController {
 	
 	@InitBinder
 	public void initBinder(WebDataBinder dataBinder) {
-		dataBinder.registerCustomEditor(LocalDate.class, new CustomLocalDateEditor("MM/dd/yyyy"));
+		dataBinder.registerCustomEditor(LocalDate.class, new CustomLocalDateEditor("M/d/yy"));
 		dataBinder.registerCustomEditor(byte[].class, new CustomFilePropertyEditor());
 	}
 }
