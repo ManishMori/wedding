@@ -44,6 +44,12 @@ public abstract class BaseServiceImpl<E, I> implements BaseService<E,I> {
 	public E save(E object) {
 		return repository.save(object);
 	}
+
+	protected JpaRepository<E, I> getRepository() {
+		return repository;
+	}
+
+	
 	
 	
 }

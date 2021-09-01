@@ -9,5 +9,10 @@ public interface UserService extends BaseService<User, Integer> {
 
 	UserResponse generateUserResponse(User createdUser);
 
+	User finaByEmail(String email);
+
+	byte[] getDocument(Integer userId, String documentName);
+
+
 
 }
