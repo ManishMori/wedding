@@ -1,0 +1,8 @@
+#mainDiv {
+    min-height: 100%;
+    vertical-align: middle;
+}
+
+#root > div {
+    min-height: 100%;
+}
