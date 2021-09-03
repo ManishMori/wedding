@@ -1,0 +1,13 @@
+{
+  "name": "wedding-solana",
+  "version": "1.0.0",
+  "description": "A library for storing and retrieving wedding data from the Solana blockchain",
+  "main": "wedding-solana.js",
+  "scripts": {
+    "test": "node ./test.js"
+  },
+  "dependencies": {
+    "@solana/web3.js": "^0.46.0",
+    "buffer-layout": "^1.2.0"
+  }
+}
